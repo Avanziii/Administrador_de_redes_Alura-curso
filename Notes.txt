@@ -1,0 +1,101 @@
+
+PROGRAMAS:
+Cisco Packet Tracer Student;
+WIRESSHARK
+
+
+Equipamentos de rede?
+
+SERVIDOR DNS -> faz o mapeamento entre o nome conhecido e o IP real respectivo.
+
+ICMP -> Dentro da ferramenta administrativa do ping temos o protocolo ICMP, sendo ele o responsável por mandar uma requisição (Echo Request) para máquina remota e esperar um retorno dessa máquina remota (Echo Reply).
+
+TTL -> Time to live, tempo de vida útil do pacote
+
+comandos to search:
+traceroute -> Win é tracert -d   (Todo o trajeto percorrido até a informação chegar no local devido)
+nslookup
+
+
+----
+
+
+Formas de obter endereço IP:
+- Ou uma máquina fornece esses endereços;
+- Ou temos que adicionar esse endereço manualmente.
+
+127.0.0.1 localhost ip loopback
+
+------------
+
+HUB ->  o HUB ganha até um apelido por esse motivo, ele é um dispositivo "burro", suas funções são básicas, ele não faz gerenciamento nenhum, então por isso, basta conectar o mesmo aos hot's que estará funcionando. Não é necessário fazer a configuração.
+
+Tentar realizar esse teste com Virtual Box:
+https://cursos.alura.com.br/forum/topico-montando-rede-2pc-36017
+
+Máscara de rede -> Máscara de rede é usada para determinar se dois equipamentos estão na mesma rede.
+
+------------
+CABOS
+Padrão T568A RJ45 -> Meu computador transmite no fio verde/verde-branco e recebe sinal no fio laranja/laranja-branco. O HUB usa esses mesmos fios mas com propósito ao contrário recebe/envia.  Quando há esse mesmo uso dos fios caracteriza uma CONEXÃO DIRETA.
+T568B (CABO CRUZADO / CROSSOVER) inverte algumas cores para não haver COLISÃO entre o dois computadores com o mesmo padrão.
+
+auto-MDIX -> Algumas placas de rede mais modernas possuem o padrão auto-MDIX, dessa forma, se as duas placas de rede estiverem configuradas, elas poderão corrigir essa questão da polaridade e se comunicarem
+
+https://www.netacad.com/courses/packet-tracer/introduction-packet-tracer
+https://www.netacad.com/portal/learning
+
+PROTOCOLO ARP -> ENVIAR MENSAGEM EM BROADCAST, disparado quando não se conhece o dispositivo na rede, então um ‘recado’ é enviado a todos os dispositivos a fim de encontrar o dispositivo procurado.
+
+HUB LIMITAÇÕES -> não consegue aprender onde os computadores estão interconectos. Causa um lentidão muito grande na rede. Vunerabilidade na segurança.
+
+Wireshark -> Pode ser usado de forma maliciosa.
+
+
+
+------------------------------------------------ PESQUISAR-------------
+ modelo OSI e os principais protocolos que temos em cada camada :)
+-----------------------------------------------------------------------
+
+
+
+
+
+Switch -> armazena endereços MAC, trafego de informação é direcionado e não a todos os computador conectador, por fim é CONFIGURÁVEL.
+Lotar memória -> Métodos usados por usuários maliciosos seria de inserir vários endereços MAC falsos para “lotar” a memória do Switch, uma vez que a memória esteja cheia, o Switch não vai conseguir definir quem está onde e ele passa a atuar como um Hub.
+
+
+--------------------------------------------
+MÁSCARAS DE REDE:
+-> Determina se os dispositivos estão na mesma rede
+
+255.255.255.0
+
+255 = REDE
+0 = MÁQUINA (HOST)
+
+
+------ 
+ROTEADORES: -> Função de conectar redes diferentes!
+pc - roteador é preciso cabo crossover?
+
+->>> Lembre-se da regra: - Dois equipamentos iguais estão interconectados? Se sim, eles tem o mesmo tipo de placa, então devo usar o cabo crossover. Se não, faço a pergunta abaixo - Dois equipamentos diferentes estão conectados? Essa conexão representa o que naturalmente o equipamento foi desenvolvido para fazer?
+
+Por exemplo ao interconectar o computador ao hub e o computador ao switch, o computador foi feito para se comunicar com várias máquinas e o hub e switch foram feitos para interconectar diversas máquinas. Dessa forma ao conectarmos os dois, vamos estar explorando o que os dois foram fabricados para fazer naturalmente. Porém o roteador foi feito para interconectar redes, se eu coloco somente um dispositivo, não terei como inserir outros dispositivos para o roteador encaminhar os pacotes e então a totalidade de sua função não está sendo explora. Devemos usar cabo crossover.
+
+
+----
+CABO CONSOLE -> porta serial(RS 232) no computador e conector de plastico na entrada console do roteador! OBJETIVO de CONFIGURAR O ROTEADOR
+PROGRAMA TERMINAL (putty muito conhecido) -> 
+
+
+---
+Habilitando router Cisco
+'enable' > 'configure terminal' > 'interface fastEthernet 0/0' > 'no shutdown' > 'exit' > 'interface fastEthernet 0/1' > 'no shutdown'
+interface fastEthernet 0/1  --> 'ip address 192.168.3.5' > '255.255.255.0' 
+'enable' > 'show ip interface brief'
+
+
+----
+DEFAULT GATEWAY (portão de saida da minha rede, aka roteador) -> definir gateway para os dispositivos se comunicarem com o roteador, e o reteador fazer o roteamento das requisições para máquinas em outras redes.
+DEFAULT GATEWAY eh o endereço ip do meu roteador.
