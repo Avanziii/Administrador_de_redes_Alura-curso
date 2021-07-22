@@ -99,3 +99,46 @@ interface fastEthernet 0/1  --> 'ip address 192.168.3.5' > '255.255.255.0'
 ----
 DEFAULT GATEWAY (portão de saida da minha rede, aka roteador) -> definir gateway para os dispositivos se comunicarem com o roteador, e o reteador fazer o roteamento das requisições para máquinas em outras redes.
 DEFAULT GATEWAY eh o endereço ip do meu roteador.
+
+
+----
+CLASSES IP
+----
+Classe A | intervalo 1º octeto (1 - 126) | máscara de rede (255.0.0.0)
+Classe B | intervalo 1º octeto (128 - 191) | máscara de rede (255.255.0.0)
+Classe C | intervalo 1º octeto (192 - 223) | máscara de rede (255.255.255.0)
+Classe D | intervalo 1º octeto (224 - 239) | máscara de rede (-) -> Classe reservado para uso de multicast, classe reservada.
+Classe E | intervalo 1º octeto (240 - 255) | máscara de rede (-) -> classe reservada.
+
+Máscara de rede separa o ip em dois grandes grupos:
+1. 255 (rede)
+2. 0 (máquinas/hosts)
+
+Dentro das classes A, B, C existem faixas privadas, apenas comunicação local, não pode ser utilizado para comunicação na internet.
+Classe A | intervalo privado 10.x.x.x
+Classe B | intervalo privado 172.16.x.x - 172.31.x.x
+Classe C | 192.168.x.x -> ip privado forcenido pela operadora de internet, porém quando acesso um site na internet o moldem (método NAT) faz a tradução desse meu ip local para um ip que acesso a internet.
+NAT -> fazer a tradução do endereço privado para o endereço público
+
+
+Endereço de rede e endereço de BROADCAST não podem ser usados, mas todos os ips dentro desse intarvalo sim.
+IP BROADCAST -> O IP de broadcast é um IP que é utilizado para mandar uma mensagem para todos os dispositivos da rede. Qualquer máquina que estiver na rede pode receber a mensagem. Este tipo de mensagem pode ser útil para casos onde é preciso mandar uma mensagem para uma máquina na rede, mas não se sabe o IP dela. Por exemplo, um cliente DHCP ao entrar uma rede com DHCP utiliza uma mensagem de broadcast para o servidor DHCP fornecer um IP para ele. Mais sobre o DHCP aqui: https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol.
+
+
+
+-------------------------
+ENDEREÇAMENTO IP COM DHCP
+-------------------------
+Servidor DHCP -> distribuir IPs para minhas máquinas de forma automatizada..
+Às vezes o roteador pode trabalhr como servidor DHCP, mas não é recomendando por não haver um grande poder computacional.
+
+config router dhcp -> 'ip dhcp pool ALURA > 'network 192.168.0.0 255.255.255.0' ESC
+'default-router 192.168.0.1' ESC
+'interface fastEthernet 0/0' > 'ip adress 192.168.0.1 255.255.255.0' 
+
+GATEWAY -> configurado para dizer aos computadores da minha rede a qual roteador comunidar quando precisar falar com dispositivos fora da rede.
+
+-------------------------
+ACESSANDO O SITE EM NOSSA SIMULAÇÃO
+-------------------------
+
